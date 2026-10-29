@@ -21,3 +21,6 @@ An ASP.NET Core MVC web application designed to streamline campus LAN gaming eve
    ```bash
    dotnet restore
    dotnet run
+
+# Poster
+<img width="1792" height="2400" alt="Dotnet Poster" src="https://github.com/user-attachments/assets/9ecccaa1-9ec5-4e40-ae9e-8f248804d1c5" />
