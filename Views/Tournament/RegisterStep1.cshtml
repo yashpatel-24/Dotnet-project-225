@@ -1,0 +1,59 @@
+@model CampusLanTournamentManager.Models.Team
+@{
+    ViewData["Title"] = "Register Team - Step 1";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card card-custom p-4 shadow-lg">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-neon mb-0"><i class="fa-solid fa-flag-checkered me-2"></i>Stage 1: Team Info</h3>
+                <span class="badge bg-success">Step 1 of 2</span>
+            </div>
+
+            <form asp-action="RegisterStep1" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="TeamName" class="form-label text-light"></label>
+                    <input asp-for="TeamName" class="form-control bg-dark text-light border-secondary"
+                           placeholder="e.g., Shadow Strikers" />
+                    <span asp-validation-for="TeamName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="GameCategory" class="form-label text-light"></label>
+                    <select asp-for="GameCategory" class="form-select bg-dark text-light border-secondary">
+                        <option value="">-- Choose Game Title --</option>
+                        <option value="Valorant LAN 5v5">Valorant 5v5</option>
+                        <option value="GTA V Arena War">GTA V Arena War</option>
+                        <option value="CS2 Campus Showdown">CS2 Campus Showdown</option>
+                        <option value="Rocket League 3v3">Rocket League 3v3</option>
+                    </select>
+                    <span asp-validation-for="GameCategory" class="text-danger small"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LeaderEmail" class="form-label text-light"></label>
+                        <input asp-for="LeaderEmail" type="email"
+                               class="form-control bg-dark text-light border-secondary" placeholder="leader@campus.edu" />
+                        <span asp-validation-for="LeaderEmail" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ContactNumber" class="form-label text-light"></label>
+                        <input asp-for="ContactNumber" class="form-control bg-dark text-light border-secondary"
+                               placeholder="9876543210" />
+                        <span asp-validation-for="ContactNumber" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="text-end mt-4">
+                    <button type="submit" class="btn btn-neon-green px-4 py-2">
+                        Next: Roster & Hardware <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

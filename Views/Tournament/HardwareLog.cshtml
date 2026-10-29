@@ -1,0 +1,68 @@
+@model IEnumerable<CampusLanTournamentManager.Models.Player>
+@{
+    ViewData["Title"] = "Hardware Verification Log";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-neon"><i class="fa-solid fa-microchip me-2"></i>Campus Hardware & BYOD Audit</h3>
+    <div>
+        <span class="badge bg-primary px-3 py-2">BYOD Total: @Model.Count(p => p.HardwareChoice == "BYOD")</span>
+        <span class="badge bg-warning text-dark px-3 py-2">Lab Systems Required: @Model.Count(p => p.HardwareChoice ==
+                                               "LabSystem")</span>
+        </div>
+    </div>
+
+    <div class="card card-custom p-3">
+        <table class="table table-dark table-hover table-dark-custom align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Player (IGN)</th>
+                    <th>Full Name</th>
+                    <th>Hardware Type</th>
+                    <th>Specs / Details</th>
+                    <th>LAN MAC Verification</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td><strong class="text-neon">@p.Team?.TeamName</strong></td>
+                        <td>@p.InGameName</td>
+                        <td>@p.FullName</td>
+                        <td>
+                            @if (p.HardwareChoice == "BYOD")
+                            {
+                                <span class="badge bg-info text-dark">BYOD Laptop</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">Campus Lab Rig</span>
+                            }
+                        </td>
+                        <td>@p.DeviceDetails</td>
+                        <td>
+                            @if (p.MacAddressVerified)
+                            {
+                                <span class="badge bg-success"><i class="fa-solid fa-check me-1"></i>Verified & Whitelisted</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger"><i class="fa-solid fa-clock me-1"></i>Pending Inspection</span>
+                            }
+                        </td>
+                        <td>
+                            <form asp-action="ToggleMacVerification" asp-route-id="@p.PlayerId" method="post"
+                                  style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-outline-light">
+                                    Toggle Status
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

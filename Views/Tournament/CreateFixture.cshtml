@@ -1,0 +1,73 @@
+@model CampusLanTournamentManager.Models.MatchFixture
+@{
+    ViewData["Title"] = "Schedule Match Fixture";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card card-custom p-4 shadow-lg">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-neon mb-0"><i class="fa-solid fa-calendar-plus me-2"></i>Schedule LAN Match</h3>
+                <a asp-action="Brackets" class="btn btn-outline-secondary btn-sm">
+                    <i class="fa-solid fa-arrow-left me-1"></i>Back to Brackets
+                </a>
+            </div>
+
+            <form asp-action="CreateFixture" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="RoundStage" class="form-label text-light"></label>
+                    <select asp-for="RoundStage" class="form-select bg-dark text-light border-secondary">
+                        <option value="Round of 16">Round of 16</option>
+                        <option value="Quarter-Final">Quarter-Final</option>
+                        <option value="Semi-Final">Semi-Final</option>
+                        <option value="Grand Final">Grand Final</option>
+                    </select>
+                    <span asp-validation-for="RoundStage" class="text-danger small"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TeamAName" class="form-label text-light"></label>
+                        <input asp-for="TeamAName" class="form-control bg-dark text-light border-secondary"
+                               placeholder="e.g. Apex Predators" required />
+                        <span asp-validation-for="TeamAName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TeamBName" class="form-label text-light"></label>
+                        <input asp-for="TeamBName" class="form-control bg-dark text-light border-secondary"
+                               placeholder="e.g. Cyber Phantoms" required />
+                        <span asp-validation-for="TeamBName" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="StationNumber" class="form-label text-light"></label>
+                        <input asp-for="StationNumber" class="form-control bg-dark text-light border-secondary"
+                               placeholder="e.g. Zone A - Bay 3" />
+                        <span asp-validation-for="StationNumber" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="MatchStatus" class="form-label text-light"></label>
+                        <select asp-for="MatchStatus" class="form-select bg-dark text-light border-secondary">
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="Live">Live</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                        <span asp-validation-for="MatchStatus" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="text-end mt-4">
+                    <button type="submit" class="btn btn-neon-green px-4 py-2">
+                        <i class="fa-solid fa-check me-2"></i>Create Fixture
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
